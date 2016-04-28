@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS Client</title>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/soapclient/soapclient.js"></script>
+  <script src="bower_components/angular-soap/angular.soap.js"></script>
+  
+	<script type="text/javascript">
+		var app = angular.module("TaskManagement", ['angularSoap']);
+	 
+		app.controller("TaskController", function($scope, $soap) {
+			$scope.tasks = [];
+	
+			$soap.post('	http://localhost:8080/SOAPWS/TaskWS', "GetTasks").then(function(response){
+				$scope.tasks = response;
+				});
+		});
+	</script>
+</head>
+<body ng-app="TaskManagement" ng-controller="TaskController">
+	<div ng-repeat="task in tasks">
+		<input ng-model="task.name"></input>
+	</div>
+	{{tasks}}
+</body>
+</html>
