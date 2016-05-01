@@ -22,7 +22,7 @@ public class TaskService {
 		
 		try (Connection conn = DriverManager.getConnection(url);) {
 		     
-			String sql = "SELECT * FROM Users";
+			String sql = "SELECT * FROM Tasks";
 			 
 			Statement statement = conn.createStatement();
 			ResultSet result = statement.executeQuery(sql);
@@ -49,12 +49,12 @@ public class TaskService {
 		
 		try (Connection conn = DriverManager.getConnection(url);) {
 		     
-			String sql = "SELECT * FROM Users WHERE TaskId=?";
+			String sql = "SELECT * FROM Tasks WHERE TaskId=?";
 			 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, taskId);
 			
-			ResultSet result = statement.executeQuery(sql);
+			ResultSet result = statement.executeQuery();
 			 
 			while (result.next()){
 			    int fetchedTaskId = result.getInt("TaskId");
