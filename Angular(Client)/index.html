@@ -33,7 +33,7 @@
       });
       
       $http.get('http://localhost:7596/api/tasks').then(function(response){
-        $scope.restTasks = response;
+        $scope.restTasks = response.data;
       });
       
 		}]);

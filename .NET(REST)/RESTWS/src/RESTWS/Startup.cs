@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using RESTWS.Data.Repositories;
 using RESTWS.Data;
 using Microsoft.Data.Entity;
+using Newtonsoft.Json.Serialization;
 
 namespace RESTWS
 {
@@ -39,13 +40,17 @@ namespace RESTWS
             // Add framework services.
             services.AddApplicationInsightsTelemetry(Configuration);
 
-            services.AddMvc();
+            services.AddMvc()
+                .AddJsonOptions(opts => opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
 
             services.AddScoped<ITasksRepository, TasksRepository>();
 
             services.AddEntityFramework()
                 .AddSqlServer()
                 .AddDbContext<MyDbContext>(options => options.UseSqlServer(Configuration["Data:ConnectionString"]));
+
+            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
@@ -61,6 +66,8 @@ namespace RESTWS
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();
+
+            app.UseCors(c => c.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseMvc();
         }
