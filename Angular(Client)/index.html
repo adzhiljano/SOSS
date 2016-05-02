@@ -13,16 +13,32 @@
 		app.controller("TaskController", function($scope, $soap) {
 			$scope.tasks = [];
 	
-			$soap.post('	http://localhost:8080/SOAPWS/TaskWS', "GetTasks").then(function(response){
+			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "GetTasks").then(function(response){
 				$scope.tasks = response;
-				});
+      });
+      
+			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "GetTask", {taskId: 2}).then(function(response){
+				$scope.task1 = response;
+      });
+      
+			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "CreateTask", { name: 'test task', priority: 5, description: 'test desc' }).then(function(response){
+				$scope.task2 = response;
+      });
+      
+			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "UpdateTask", { taskId: 3, name: 'naaaaaame', priority: 32, description: 'deeeeeesc' }).then(function(response){
+				$scope.task3 = response;
+      });
+      
+			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "DeleteTask", { taskId: 1 }).then(function(response){
+      });
 		});
 	</script>
 </head>
 <body ng-app="TaskManagement" ng-controller="TaskController">
-	<div ng-repeat="task in tasks">
-		<input ng-model="task.name"></input>
-	</div>
-	{{tasks}}
+	List of tasks:<p>{{tasks}}</p>
+  Get single task:<p>{{task1}}</p>
+  Newly created task:<p>{{task2}}</p>
+  Updated task with taskId 3:<p>{{task3}}</p>
+  Deleted task with taskId 1:<p></p>
 </body>
 </html>
