@@ -9,28 +9,72 @@ import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "CreateTask", namespace = "http://webservice/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CreateTask", namespace = "http://webservice/")
+@XmlType(name = "CreateTask", namespace = "http://webservice/", propOrder = {
+    "name",
+    "priority",
+    "description"
+})
 public class CreateTask {
 
-    @XmlElement(name = "arg0", namespace = "")
-    private models.Task arg0;
+    @XmlElement(name = "name", namespace = "http://webservice/")
+    private String name;
+    @XmlElement(name = "priority", namespace = "http://webservice/")
+    private int priority;
+    @XmlElement(name = "description", namespace = "http://webservice/")
+    private String description;
 
     /**
      * 
      * @return
-     *     returns Task
+     *     returns String
      */
-    public models.Task getArg0() {
-        return this.arg0;
+    public String getName() {
+        return this.name;
     }
 
     /**
      * 
-     * @param arg0
-     *     the value for the arg0 property
+     * @param name
+     *     the value for the name property
      */
-    public void setArg0(models.Task arg0) {
-        this.arg0 = arg0;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * 
+     * @return
+     *     returns int
+     */
+    public int getPriority() {
+        return this.priority;
+    }
+
+    /**
+     * 
+     * @param priority
+     *     the value for the priority property
+     */
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    /**
+     * 
+     * @return
+     *     returns String
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * 
+     * @param description
+     *     the value for the description property
+     */
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 }

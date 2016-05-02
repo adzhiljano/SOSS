@@ -30,8 +30,10 @@ public class TaskService {
 			while (result.next()){
 			    int taskId = result.getInt("TaskId");
 			    String name = result.getString("Name");
+			    int priority = result.getInt("Priority");
+			    String description = result.getString("Description");
 			    
-			    list.add(new Task(taskId, name));
+			    list.add(new Task(taskId, name, priority, description));
 			    
 			}
 		     
@@ -59,8 +61,10 @@ public class TaskService {
 			while (result.next()){
 			    int fetchedTaskId = result.getInt("TaskId");
 			    String fetchedName = result.getString("Name");
+			    int fetchedPriority = result.getInt("Priority");
+			    String fetchedDescription = result.getString("Description");
 			    
-			    task = new Task(fetchedTaskId, fetchedName);
+			    task = new Task(fetchedTaskId, fetchedName, fetchedPriority, fetchedDescription);
 			    
 			    if (result.next()) {
 			        throw new Exception("More than one record found");
@@ -75,17 +79,30 @@ public class TaskService {
 		return task;
 	}
 	
-	public Task CreateTask(Task task){
+	public Task CreateTask(String name, int priority, String description){
 		SetDriver();
+		
+		Task task = new Task(name, priority, description);
 		
 		try (Connection conn = DriverManager.getConnection(url);) {
 		     
-			String sql = "INSERT INTO Tasks (Name) VALUES (?)";
+			String sql = "INSERT INTO Tasks (Name, Priority, Description) VALUES (?, ?, ?)";
 			 
-			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, task.Name);
+			PreparedStatement statement = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			statement.setString(1, name);
+			statement.setInt(2, priority);
+			statement.setString(3, description);
 			 
 			statement.executeUpdate();
+			
+	        try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
+	            if (generatedKeys.next()) {
+	            	task.setTaskId(generatedKeys.getInt(1));
+	            }
+	            else {
+	                throw new SQLException("Creating task failed, no ID obtained.");
+	            }
+	        }
 		     
 		} catch (SQLException ex) {
 		    ex.printStackTrace();
@@ -94,15 +111,17 @@ public class TaskService {
 		return task;
 	}
 	
-	public Task UpdateTask(int taskId, Task task){
+	public Task UpdateTask(int taskId, String name, int priority, String description){
 		SetDriver();
 		
 		try (Connection conn = DriverManager.getConnection(url);) {
-			String sql = "UPDATE Tasks SET Name=? WHERE TaskId=?";
+			String sql = "UPDATE Tasks SET Name=?, Priority=?, Description=? WHERE TaskId=?";
 			 
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setString(1, task.Name);
-			statement.setInt(2, taskId);
+			statement.setString(1, name);
+			statement.setInt(2, priority);
+			statement.setString(3, description);
+			statement.setInt(4, taskId);
 			
 			statement.executeUpdate();
 		     
@@ -110,7 +129,7 @@ public class TaskService {
 		    ex.printStackTrace();
 		}
 		
-		return task;
+		return new Task(taskId, name, priority, description);
 	}
 	
 	public void DeleteTask(int taskId){
@@ -120,7 +139,7 @@ public class TaskService {
 			String sql = "DELETE FROM Tasks WHERE TaskId=?";
 			 
 			PreparedStatement statement = conn.prepareStatement(sql);
-			statement.setInt(2, taskId);
+			statement.setInt(1, taskId);
 			
 			statement.executeUpdate();
 		     

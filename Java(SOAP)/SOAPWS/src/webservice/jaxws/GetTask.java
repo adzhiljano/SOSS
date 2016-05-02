@@ -12,25 +12,25 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "GetTask", namespace = "http://webservice/")
 public class GetTask {
 
-    @XmlElement(name = "arg0", namespace = "")
-    private int arg0;
+    @XmlElement(name = "taskId", namespace = "http://webservice/")
+    private int taskId;
 
     /**
      * 
      * @return
      *     returns int
      */
-    public int getArg0() {
-        return this.arg0;
+    public int getTaskId() {
+        return this.taskId;
     }
 
     /**
      * 
-     * @param arg0
-     *     the value for the arg0 property
+     * @param taskId
+     *     the value for the taskId property
      */
-    public void setArg0(int arg0) {
-        this.arg0 = arg0;
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
 }

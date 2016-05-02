@@ -3,6 +3,7 @@ package webservice;
 import java.util.List;
 
 import javax.jws.WebService;
+
 import models.Task;
 import services.TaskService;
   
@@ -25,13 +26,13 @@ public class TaskWS implements ITaskWS{
 	}
 	
 	@Override
-	public Task CreateTask(Task task){
-		return this.TaskService.CreateTask(task);
+	public Task CreateTask(String name, int priority, String description){
+		return this.TaskService.CreateTask(name, priority, description);
 	}
 	
 	@Override
-	public Task UpdateTask(int taskId, Task task){
-		return this.TaskService.UpdateTask(taskId, task);	
+	public Task UpdateTask(int taskId, String name, int priority, String description){
+		return this.TaskService.UpdateTask(taskId, name, priority, description);	
 	}
 	
 	@Override
