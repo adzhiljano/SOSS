@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "dependencies": {
     "angular": "1.5.5",
-    "angular-soap": "adzhiljano/angular-soap#d65356da4fcae10e75de2f6d2971f85248e18c32"
+    "angular-soap": "adzhiljano/angular-soap#7006671ce5143f831bf7c524348139386807ebd3"
   }
 }
