@@ -10,35 +10,42 @@
 	<script type="text/javascript">
 		var app = angular.module("TaskManagement", ['angularSoap']);
 	 
-		app.controller("TaskController", function($scope, $soap) {
-			$scope.tasks = [];
+		app.controller("TaskController", ['$scope', '$soap', '$http', function($scope, $soap, $http) {
+			$scope.soapTasks = [];
 	
 			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "GetTasks").then(function(response){
-				$scope.tasks = response;
+				$scope.soapTasks = response;
       });
       
 			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "GetTask", {taskId: 2}).then(function(response){
-				$scope.task1 = response;
+				$scope.soapTask1 = response;
       });
       
 			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "CreateTask", { name: 'test task', priority: 5, description: 'test desc' }).then(function(response){
-				$scope.task2 = response;
+				$scope.soapTask2 = response;
       });
       
 			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "UpdateTask", { taskId: 3, name: 'naaaaaame', priority: 32, description: 'deeeeeesc' }).then(function(response){
-				$scope.task3 = response;
+				$scope.soapTask3 = response;
       });
       
 			$soap.post('http://localhost:8080/SOAPWS/TaskWS', "DeleteTask", { taskId: 1 }).then(function(response){
       });
-		});
+      
+      $http.get('http://localhost:7596/api/tasks').then(function(response){
+        $scope.restTasks = response;
+      });
+      
+		}]);
 	</script>
 </head>
 <body ng-app="TaskManagement" ng-controller="TaskController">
-	List of tasks:<p>{{tasks}}</p>
-  Get single task:<p>{{task1}}</p>
-  Newly created task:<p>{{task2}}</p>
-  Updated task with taskId 3:<p>{{task3}}</p>
-  Deleted task with taskId 1:<p></p>
+	List of tasks(SOAP):<p>{{soapTasks}}</p>
+  Get single task(SOAP):<p>{{soapTask1}}</p>
+  Newly created task(SOAP):<p>{{soapTask2}}</p>
+  Updated task with taskId 3(SOAP):<p>{{soapTask3}}</p>
+  Deleted task with taskId 1(SOAP):<p></p>
+  
+  List of tasks(REST): <p>{{restTasks}}</p>
 </body>
 </html>

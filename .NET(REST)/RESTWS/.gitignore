@@ -1,0 +1,21 @@
+packages/*
+packages/**/*
+
+build/*
+build/**/*
+
+*.tmp
+*.suo
+*.csproj.user
+
+.vs/*
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# DNX
+project.lock.json
+artifacts/
