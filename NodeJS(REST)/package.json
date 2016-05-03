@@ -1,0 +1,14 @@
+{
+  "version": "1.0.0",
+  "private": true,
+  "name": "node-rest-ws",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "humps": "^1.1.0",
+    "msnodesqlv8": "^0.1.35",
+    "mssql": "^3.2.1"
+  }
+}
