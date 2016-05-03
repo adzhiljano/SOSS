@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "angular": "1.5.5",
-    "angular-soap": "adzhiljano/angular-soap#7006671ce5143f831bf7c524348139386807ebd3",
+    "angular-soap": "adzhiljano/angular-soap#e93f16dac4c22e7f1dc07ba09ae6536e1e72d843",
     "bootstrap": "~3.3.6",
     "angular-route": "~1.5.5",
     "jquery": "~2.2.3",
