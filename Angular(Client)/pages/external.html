@@ -1,3 +1,30 @@
 <div>
-	Hello this is External page
+	<div class="row">
+		Forecast for {{cityInfo}}
+		
+		<table ng-init="getWeather()" class="col-sm-4 col-md-3">
+			<tr>
+				<th class="col-sm-2 col-md-2">Main</th>
+				<th class="col-sm-2 col-md-2">Description</th>
+			</tr>
+			<tr ng-repeat="day in weatherPerDays">
+				<td class="col-sm-2 col-md-2">{{ day.main }}</td>
+				<td class="col-sm-2 col-md-2">{{ day.description }}</td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="row">
+		<div class="input-group col-sm-3 col-md-3">
+			<span class="input-group-addon" id="cityAdon">City</span>
+			<input type="text" class="form-control" ng-model="city" aria-describedby="cityAdon">
+		</div>
+  	</div>
+	<div class="row">
+		<div class="input-group col-sm-3 col-md-3">
+			<span class="input-group-addon" id="daysAdon">Days</span>
+			<input type="text" class="form-control" ng-model="days" aria-describedby="daysAdon">
+		</div>
+  	</div>
+	<button type="button" ng-click="getWeather()" class="btn btn-sm btn-primary row"> Get forecast from external service</button>
 </div>
