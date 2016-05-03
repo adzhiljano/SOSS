@@ -1,4 +1,4 @@
-# SOSS
+# SOSS (Service-Oriented Software System)
 
 #### To run the Angular Client
 
