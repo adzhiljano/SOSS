@@ -39,7 +39,7 @@ namespace RESTWS.Controllers
 
         // PUT api/tasks/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Task task)
+        public void Put(int id, [FromBody] Task task)
         {
             this.tasksRepository.Update(id, task);
         }
