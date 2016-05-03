@@ -40,7 +40,7 @@
         $soap.post('http://localhost:8080/SOAPWS/TaskWS', "UpdateTask", $scope.task)
           .then(function(response){
               $scope.task = {};
-              $scope.getRestTasks();
+              $scope.getSoapTasks();
           });
       };
     }]);
