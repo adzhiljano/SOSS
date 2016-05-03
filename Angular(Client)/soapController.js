@@ -50,5 +50,5 @@
               $scope.getSoapTasks();
           });
       };
-    }]);
+  }]);
 }(angular))

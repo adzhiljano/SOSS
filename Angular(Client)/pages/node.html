@@ -1,3 +1,50 @@
 <div>
-	Hello this is Node page
+	<div class="row">
+		<button type="button" class="btn-sm btn-primary btn" ng-click="getNodeTasks()">Reload Tasks using Nodejs</button>
+	</div>
+	<div class="row">
+		<table ng-init="getNodeTasks()" class="col-sm-4 col-md-3">
+			<tr>
+				<th class="col-sm"></th>
+				<th class="col-sm"></th>
+				<th class="col-sm-2 col-md-2">Name</th>
+				<th class="col-sm-2 col-md-2">Description</th>
+				<th class="col-sm-2 col-md-2">Priority</th>
+			</tr>
+			<tr ng-repeat="t in tasks">
+				<td class="col-sm"><button class="btn-xs btn-primary glyphicon glyphicon-pencil"  type="button" ng-click="edit(t.taskId)"></button></td>
+				<td class="col-sm"><button class="btn-xs btn-danger glyphicon glyphicon-remove"  type="button" ng-click="delete(t.taskId)"></button></td>
+				<td class="col-sm-2 col-md-2">{{ t.name }}</td>
+				<td class="col-sm-2 col-md-2">{{ t.description }}</td>
+				<td class="col-sm-2 col-md-2">{{ t.priority }}</td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	<div class="row">
+		<div class="input-group col-sm-3 col-md-3">
+			<span class="input-group-addon" id="taskIdAdon">TaskId</span>
+			<input type="text" ng-readonly="true" class="form-control" ng-model="task.taskId" aria-describedby="taskIdAdon"></textarea>
+		</div>
+  	</div>
+	<div class="row">
+		<div class="input-group col-sm-3 col-md-3">
+			<span class="input-group-addon" id="nameAdon">Name</span>
+			<input type="text" class="form-control" ng-model="task.name" aria-describedby="nameAdon"></textarea>
+		</div>
+  	</div>
+	<div class="row">
+		<div class="input-group col-sm-3 col-md-3">
+			<span class="input-group-addon" id="priorityAdon">Priority</span>
+			<input type="text" class="form-control" ng-model="task.priority" aria-describedby="priorityAdon"></textarea>
+		</div>
+  	</div>
+	<div class="row">
+		<div class="input-group col-sm-3 col-md-6">
+			<span class="input-group-addon" id="descriptionAdon">Description</span>
+			<input type="text" class="form-control" ng-model="task.description" aria-describedby="descriptionAdon"></textarea>
+		</div>
+  	</div>
+	  <button type="button" ng-click="postNodeTask()" class="btn btn-sm btn-primary row" ng-if="!task.taskId"> Create Task using Nodejs</button>
+	  <button type="button" ng-click="putNodeTask(task.taskId)" class="btn btn-sm btn-primary row" ng-if="task.taskId">Change Task using Nodejs</button>
 </div>
