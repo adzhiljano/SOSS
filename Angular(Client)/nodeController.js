@@ -6,7 +6,7 @@
       $scope.edit = function (taskId) {
         $http.get("http://localhost:3000/api/tasks/" + taskId)
           .then(function (response) {
-            $scope.task = response.data;
+            $scope.task = response.data[0];
           });
       };
       
