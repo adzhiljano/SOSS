@@ -23,7 +23,14 @@
       $scope.getSoapTasks = function () {
           $soap.post('http://localhost:8080/SOAPWS/TaskWS', "GetTasks")
           .then(function(response){
-            $scope.tasks = response;
+            //nasty workaround due to bugs in angular-soap and soapclient
+            if(!response) {
+              $scope.tasks = [];
+            } else if(angular.isArray(response)) {
+              $scope.tasks = response;
+            } else {
+              $scope.tasks = [response];
+            }
           });
       };
         
