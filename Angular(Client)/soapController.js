@@ -7,7 +7,7 @@
         $soap.post('http://localhost:8080/SOAPWS/TaskWS', "GetTask", {
           taskId: taskId })
           .then(function(response){
-              $scope.task = response.data;            
+              $scope.task = response;            
           });
       };
       
@@ -23,7 +23,7 @@
       $scope.getSoapTasks = function () {
           $soap.post('http://localhost:8080/SOAPWS/TaskWS', "GetTasks")
           .then(function(response){
-            $scope.tasks = response.data;
+            $scope.tasks = response;
           });
       };
         
