@@ -1,6 +1,6 @@
 <div>
 	<div class="row">
-		<button type="button" class="btn-sm btn-primary btn" ng-click="getSoapTask()">Reload Tasks using SOAP</button>
+		<button type="button" class="btn-sm btn-primary btn" ng-click="getSoapTask()">Reload Tasks using Java SOAP WS</button>
 	</div>
 	<div class="row">
 		<table ng-init="getSoapTasks()" class="col-sm-4 col-md-3">
@@ -45,6 +45,6 @@
 			<input type="text" class="form-control" ng-model="task.description" aria-describedby="descriptionAdon"></textarea>
 		</div>
   	</div>
-	  <button type="button" ng-click="postSoapTask()" class="btn btn-sm btn-primary row" ng-if="!task.taskId"> Create Task using SOAP</button>
-	  <button type="button" ng-click="putSoapTask(task.taskId)" class="btn btn-sm btn-primary row" ng-if="task.taskId">Change Task using SOAP</button>
+	  <button type="button" ng-click="postSoapTask()" class="btn btn-sm btn-primary row" ng-if="!task.taskId"> Create Task using Java SOAP WS</button>
+	  <button type="button" ng-click="putSoapTask(task.taskId)" class="btn btn-sm btn-primary row" ng-if="task.taskId">Change Task using Java SOAP WS</button>
 </div>
