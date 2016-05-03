@@ -32,14 +32,14 @@ namespace RESTWS.Controllers
 
         // POST api/tasks
         [HttpPost]
-        public void Post(Task task)
+        public void Post([FromBody] Task task)
         {
             this.tasksRepository.Add(task);
         }
 
         // PUT api/tasks/5
         [HttpPut("{id}")]
-        public void Put(int id, Task task)
+        public void Put(int id, [FromBody]Task task)
         {
             this.tasksRepository.Update(id, task);
         }
