@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.10 svn-revision#919b322c92f13ad085a933e8dd6dd35d4947364b. --><xs:schema xmlns:tns="http://webservice/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://webservice/">
+
+<xs:element name="CreateTask" type="tns:CreateTask"/>
+
+<xs:element name="CreateTaskResponse" type="tns:CreateTaskResponse"/>
+
+<xs:element name="DeleteTask" type="tns:DeleteTask"/>
+
+<xs:element name="DeleteTaskResponse" type="tns:DeleteTaskResponse"/>
+
+<xs:element name="Exception" type="tns:Exception"/>
+
+<xs:element name="GetTask" type="tns:GetTask"/>
+
+<xs:element name="GetTaskResponse" type="tns:GetTaskResponse"/>
+
+<xs:element name="GetTasks" type="tns:GetTasks"/>
+
+<xs:element name="GetTasksResponse" type="tns:GetTasksResponse"/>
+
+<xs:element name="UpdateTask" type="tns:UpdateTask"/>
+
+<xs:element name="UpdateTaskResponse" type="tns:UpdateTaskResponse"/>
+
+<xs:complexType name="GetTask">
+<xs:sequence>
+<xs:element name="taskId" type="xs:int" form="qualified"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetTaskResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:task" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="task">
+<xs:sequence>
+<xs:element name="description" type="xs:string" minOccurs="0"/>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="priority" type="xs:int"/>
+<xs:element name="taskId" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="Exception">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetTasks">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="GetTasksResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:task" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpdateTask">
+<xs:sequence>
+<xs:element name="taskId" type="xs:int" form="qualified"/>
+<xs:element name="name" type="xs:string" form="qualified" minOccurs="0"/>
+<xs:element name="priority" type="xs:int" form="qualified"/>
+<xs:element name="description" type="xs:string" form="qualified" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpdateTaskResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:task" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DeleteTask">
+<xs:sequence>
+<xs:element name="taskId" type="xs:int" form="qualified"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="DeleteTaskResponse">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="CreateTask">
+<xs:sequence>
+<xs:element name="name" type="xs:string" form="qualified" minOccurs="0"/>
+<xs:element name="priority" type="xs:int" form="qualified"/>
+<xs:element name="description" type="xs:string" form="qualified" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CreateTaskResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:task" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

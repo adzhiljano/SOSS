@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy xmlns="http://www.apache.org/ode/schemas/dd/2007/03" xmlns:callservice.localhost="http://callservice.localhost" xmlns:webservice="http://webservice/">
+  <process name="callservice.localhost:CallService">
+    <active>true</active>
+    <retired>false</retired>
+    <process-events generate="all"/>
+    <provide partnerLink="client">
+      <service name="callservice.localhost:CallServiceService" port="CallServicePort"/>
+    </provide>
+    <invoke partnerLink="TaskPL">
+      <service name="webservice:TaskWSService" port="TaskWSPort"/>
+    </invoke>
+  </process>
+</deploy>
