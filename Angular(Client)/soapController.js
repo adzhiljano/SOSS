@@ -10,6 +10,14 @@
               $scope.task = response;            
           });
       };
+        
+      $scope.editBPEL = function (taskId) {
+        $soap.post('http://localhost:9090/ode/processes/CallService', "CallServiceRequest", {
+          input: taskId })
+          .then(function(response){
+              $scope.task = response;            
+          });
+      };
       
       $scope.delete = function (taskId) {
         $soap.post('http://localhost:8080/SOAPWS/TaskWS', "DeleteTask", {
